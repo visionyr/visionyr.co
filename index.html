@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visionyr — Build the Brand Behind the Vision</title>
+  <meta name="description" content="Visionyr is an AI Brand Builder helping entrepreneurs create and grow brands with positioning, identity, launch strategy, and content plans in minutes." />
+  <meta property="og:title" content="Visionyr — Build the Brand Behind the Vision" />
+  <meta property="og:description" content="AI Brand Builder for modern entrepreneurs, startups, and creative businesses." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+      --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+      --color-navy: oklch(0.24 0.06 264);
+      --color-mint: oklch(0.95 0.06 178);
+      --color-steel: oklch(0.94 0.022 245);
+      --color-ink: oklch(0.27 0 0);
+      --color-background: oklch(1 0 0);
+      --color-foreground: oklch(0.27 0 0);
+      --color-border: oklch(0.92 0.01 245);
+      --shadow-soft: 0 1px 2px rgba(20,33,61,0.04), 0 8px 24px rgba(20,33,61,0.06);
+      --shadow-card: 0 1px 0 rgba(20,33,61,0.04), 0 24px 48px -16px rgba(20,33,61,0.12);
+      --shadow-glow: 0 30px 80px -30px rgba(20,33,61,0.35);
+    }
+
+    @layer base {
+      * { border-color: var(--color-border); }
+      body {
+        background-color: var(--color-background);
+        color: var(--color-foreground);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      ::selection { background: oklch(0.95 0.06 178); color: oklch(0.24 0.06 264); }
+    }
+
+    @utility grid-bg {
+      background-image:
+        linear-gradient(to right, color-mix(in oklab, oklch(0.24 0.06 264) 6%, transparent) 1px, transparent 1px),
+        linear-gradient(to bottom, color-mix(in oklab, oklch(0.24 0.06 264) 6%, transparent) 1px, transparent 1px);
+      background-size: 56px 56px;
+    }
+  </style>
+
+  <style>
+    @keyframes vy-rise {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes vy-pulse {
+      0%, 100% { opacity: 0.55; }
+      50%       { opacity: 1; }
+    }
+    .animate-rise        { animation: vy-rise 0.7s cubic-bezier(0.2,0.7,0.2,1) both; }
+    .animate-pulse-soft  { animation: vy-pulse 2.4s ease-in-out infinite; }
+
+    /* FAQ accordion */
+    .faq-answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    }
+    .faq-answer.open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      margin-top: 0.75rem;
+    }
+    .faq-answer > div { overflow: hidden; min-height: 0; }
+  </style>
+</head>
+<body class="min-h-screen bg-background text-foreground">
+
+<!-- ===== NAV ===== -->
+<header class="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+    <a href="#" class="flex items-center gap-2">
+      <span class="grid h-7 w-7 place-items-center rounded-md bg-navy text-white">
+        <span class="block h-2 w-2 rounded-full bg-mint"></span>
+      </span>
+      <span class="text-[17px] font-semibold tracking-tight text-navy">
+        Visionyr<span class="text-navy/40">™</span>
+      </span>
+    </a>
+    <nav class="hidden items-center gap-8 md:flex">
+      <a href="#how-it-works" class="text-sm text-ink/70 transition-colors hover:text-navy">How It Works</a>
+      <a href="#create"       class="text-sm text-ink/70 transition-colors hover:text-navy">Create</a>
+      <a href="#accelerate"  class="text-sm text-ink/70 transition-colors hover:text-navy">Accelerate</a>
+      <a href="#showcase"    class="text-sm text-ink/70 transition-colors hover:text-navy">Showcase</a>
+      <a href="#pricing"     class="text-sm text-ink/70 transition-colors hover:text-navy">Pricing</a>
+      <a href="#faq"         class="text-sm text-ink/70 transition-colors hover:text-navy">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="#" class="hidden text-sm text-ink/70 transition-colors hover:text-navy sm:inline">Sign in</a>
+      <a href="create.html" class="inline-flex items-center gap-1.5 rounded-full bg-navy px-4 py-2 text-sm font-medium text-white transition-all hover:bg-navy/90">
+        Generate My Brand Blueprint <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== HERO ===== -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-60" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-gradient-to-b from-steel/40 to-transparent" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-7xl px-6 pb-24 pt-20 lg:pt-28">
+
+    <div class="mx-auto max-w-3xl text-center animate-rise">
+      <div class="inline-flex items-center gap-2 rounded-full border border-navy/10 bg-white/70 px-3 py-1.5 text-xs text-navy/80 shadow-soft">
+        <span class="h-1.5 w-1.5 rounded-full bg-mint animate-pulse-soft"></span>
+        Trusted by Founders Building the Next Generation of Brands
+      </div>
+      <h1 class="mt-6 text-balance text-5xl font-semibold tracking-[-0.03em] text-navy md:text-7xl">
+        Build a Brand Worth Remembering.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-ink/70">
+        Visionyr helps founders turn ideas into clear, distinctive, and scalable brands.
+        Generate positioning, identity, launch strategies, campaigns, and content systems in minutes.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+        <a href="create.html" class="group inline-flex items-center gap-2 rounded-full bg-navy px-5 py-3 text-sm font-medium text-white shadow-soft transition-all hover:bg-navy/90 hover:shadow-glow">
+          Generate My Brand Blueprint
+          <i data-lucide="arrow-right" class="h-4 w-4"></i>
+        </a>
+        <a href="#showcase" class="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-5 py-3 text-sm font-medium text-navy transition-colors hover:bg-steel/40">
+          See Examples
+        </a>
+      </div>
+      <p class="mt-5 text-xs text-ink/50">From idea to Brand Blueprint in minutes.</p>
+    </div>
+
+    <!-- Dashboard Mock -->
+    <div class="relative mx-auto mt-20 max-w-6xl">
+      <div class="relative rounded-3xl border border-navy/10 bg-white p-3 shadow-card animate-rise">
+        <div class="rounded-2xl bg-gradient-to-br from-steel/40 via-white to-mint/30 p-6 md:p-8">
+          <!-- Browser chrome -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="h-2.5 w-2.5 rounded-full bg-navy/20"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-navy/20"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-navy/20"></span>
+            </div>
+            <div class="rounded-full border border-navy/10 bg-white/70 px-3 py-1 text-xs text-navy/70">
+              visionyr.co / scentrism
+            </div>
+            <span class="grid h-6 w-6 place-items-center rounded-full bg-navy text-[10px] font-medium text-white">S</span>
+          </div>
+
+          <!-- Metric cards -->
+          <div class="mt-8 grid gap-5 md:grid-cols-3">
+            <!-- Brand Score -->
+            <div class="rounded-2xl border border-navy/10 bg-white p-5">
+              <div class="flex items-center justify-between">
+                <p class="text-xs uppercase tracking-wide text-ink/50">Brand Score</p>
+                <span class="h-2 w-2 rounded-full bg-navy"></span>
+              </div>
+              <p class="mt-3 text-3xl font-semibold tracking-tight text-navy">91%</p>
+              <div class="mt-4 h-1.5 w-full rounded-full bg-steel/60">
+                <div class="h-full rounded-full bg-navy" style="width:91%"></div>
+              </div>
+            </div>
+            <!-- Consistency -->
+            <div class="rounded-2xl border border-navy/10 bg-white p-5">
+              <div class="flex items-center justify-between">
+                <p class="text-xs uppercase tracking-wide text-ink/50">Consistency</p>
+                <span class="h-2 w-2 rounded-full bg-mint"></span>
+              </div>
+              <p class="mt-3 text-3xl font-semibold tracking-tight text-navy">94%</p>
+              <div class="mt-4 h-1.5 w-full rounded-full bg-steel/60">
+                <div class="h-full rounded-full" style="width:94%; background-color:oklch(0.72 0.12 178)"></div>
+              </div>
+            </div>
+            <!-- Growth Potential -->
+            <div class="rounded-2xl border border-navy/10 bg-white p-5">
+              <div class="flex items-center justify-between">
+                <p class="text-xs uppercase tracking-wide text-ink/50">Growth Potential</p>
+                <span class="h-2 w-2 rounded-full bg-steel"></span>
+              </div>
+              <p class="mt-3 text-3xl font-semibold tracking-tight text-navy">88%</p>
+              <div class="mt-4 h-1.5 w-full rounded-full bg-steel/60">
+                <div class="h-full rounded-full bg-navy/40" style="width:88%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lower cards -->
+          <div class="mt-5 grid gap-5 md:grid-cols-5">
+            <!-- Recommendations -->
+            <div class="rounded-2xl border border-navy/10 bg-white p-5 md:col-span-3">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-xs uppercase tracking-wide text-ink/50">Today's Recommendations</p>
+                  <p class="mt-1 text-base font-medium text-navy">3 strategic moves</p>
+                </div>
+                <i data-lucide="sparkles" class="h-4 w-4 text-navy/50"></i>
+              </div>
+              <ul class="mt-4 divide-y divide-border">
+                <li class="flex items-center justify-between gap-4 py-3">
+                  <div class="min-w-0">
+                    <p class="truncate text-sm font-medium text-navy">Launch Discovery Set</p>
+                    <p class="truncate text-xs text-ink/60">Convert browsers into first-purchase rituals.</p>
+                  </div>
+                  <i data-lucide="arrow-up-right" class="h-4 w-4 shrink-0 text-navy/40"></i>
+                </li>
+                <li class="flex items-center justify-between gap-4 py-3">
+                  <div class="min-w-0">
+                    <p class="truncate text-sm font-medium text-navy">Create New Campaign</p>
+                    <p class="truncate text-xs text-ink/60">Frame the seasonal story around mindful scent.</p>
+                  </div>
+                  <i data-lucide="arrow-up-right" class="h-4 w-4 shrink-0 text-navy/40"></i>
+                </li>
+                <li class="flex items-center justify-between gap-4 py-3">
+                  <div class="min-w-0">
+                    <p class="truncate text-sm font-medium text-navy">Improve Product Story</p>
+                    <p class="truncate text-xs text-ink/60">Tighten the founder POV on the PDP hero.</p>
+                  </div>
+                  <i data-lucide="arrow-up-right" class="h-4 w-4 shrink-0 text-navy/40"></i>
+                </li>
+              </ul>
+            </div>
+            <!-- Blueprint panel -->
+            <div class="rounded-2xl border border-navy/15 bg-navy p-5 text-white md:col-span-2">
+              <p class="text-xs uppercase tracking-wide text-white/50">Brand Blueprint™</p>
+              <p class="mt-1 text-base font-medium">Scentrism · Mindful Fragrance</p>
+              <div class="mt-4 space-y-2 text-xs text-white/70">
+                <div class="flex items-center justify-between rounded-md bg-white/5 px-3 py-2">
+                  <span>Positioning</span><span class="text-mint">Defined</span>
+                </div>
+                <div class="flex items-center justify-between rounded-md bg-white/5 px-3 py-2">
+                  <span>Identity</span><span class="text-mint">Defined</span>
+                </div>
+                <div class="flex items-center justify-between rounded-md bg-white/5 px-3 py-2">
+                  <span>Audience</span><span class="text-mint">Defined</span>
+                </div>
+                <div class="flex items-center justify-between rounded-md bg-white/5 px-3 py-2">
+                  <span>Tone of Voice</span><span class="text-mint">Defined</span>
+                </div>
+              </div>
+              <a href="#" class="mt-5 inline-flex items-center gap-1.5 text-xs font-medium text-mint">
+                Open blueprint <i data-lucide="arrow-right" class="h-3 w-3"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section id="how-it-works" class="border-y border-border/60 bg-white py-28">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs uppercase tracking-[0.22em] text-navy/60">How It Works</p>
+      <h2 class="mt-3 text-4xl font-semibold tracking-[-0.02em] text-navy md:text-5xl">How Visionyr Works</h2>
+      <p class="mt-4 text-lg text-ink/70">Three simple steps from vision to brand.</p>
+    </div>
+    <div class="mt-14 grid gap-5 md:grid-cols-3">
+      <!-- Step 1 -->
+      <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="font-serif text-sm italic text-navy/40">01</span>
+        <span class="mt-4 grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="message-square" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Describe Your Vision</h3>
+        <p class="mt-2 text-sm leading-relaxed text-ink/65">Tell us about your idea, audience, goals, and category.</p>
+      </div>
+      <!-- Step 2 -->
+      <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="font-serif text-sm italic text-navy/40">02</span>
+        <span class="mt-4 grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="file-text" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Generate Your Brand Blueprint</h3>
+        <p class="mt-2 text-sm leading-relaxed text-ink/65">Visionyr creates positioning, identity, naming, messaging, and launch strategy.</p>
+      </div>
+      <!-- Step 3 -->
+      <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="font-serif text-sm italic text-navy/40">03</span>
+        <span class="mt-4 grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="rocket" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Launch and Grow</h3>
+        <p class="mt-2 text-sm leading-relaxed text-ink/65">Execute with confidence using Growth Blueprint and AI-powered recommendations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CREATE ===== -->
+<section id="create" class="relative py-28">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs uppercase tracking-[0.22em] text-navy/60">Create</p>
+      <h2 class="mt-3 text-4xl font-semibold tracking-[-0.02em] text-navy md:text-5xl">Create<span class="text-navy/30">™</span></h2>
+      <p class="mt-4 text-lg text-ink/70">Everything you need to build a brand from scratch.</p>
+    </div>
+    <div class="mt-14 grid gap-5 md:grid-cols-3">
+      <!-- Feature cards -->
+      <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="compass" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Opportunity Finder™</h3>
+        <p class="mt-1.5 text-sm text-ink/65">Discover market opportunities.</p>
+      </div>
+      <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="building-2" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Brand Architect™</h3>
+        <p class="mt-1.5 text-sm text-ink/65">Build positioning, mission, vision, and personality.</p>
+      </div>
+      <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="type" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Naming Studio™</h3>
+        <p class="mt-1.5 text-sm text-ink/65">Generate brand names, product names, and taglines.</p>
+      </div>
+      <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="palette" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Creative Director™</h3>
+        <p class="mt-1.5 text-sm text-ink/65">Generate visual direction and design guidance.</p>
+      </div>
+      <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="rocket" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Launch Planner™</h3>
+        <p class="mt-1.5 text-sm text-ink/65">Build launch-ready marketing plans.</p>
+      </div>
+      <!-- Blueprint full-width card -->
+      <div class="relative overflow-hidden rounded-2xl border border-navy/15 bg-navy p-6 text-white md:col-span-3">
+        <div class="grid items-center gap-8 md:grid-cols-2">
+          <div>
+            <p class="text-xs uppercase tracking-[0.18em] text-mint">Output</p>
+            <h3 class="mt-2 text-3xl font-semibold tracking-tight">Brand Blueprint™</h3>
+            <p class="mt-3 max-w-md text-sm text-white/70">Your complete brand operating system, including positioning, audience, personality, messaging, visual direction, and launch strategy.</p>
+            <a href="#" class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-mint">
+              Preview a Blueprint <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+            </a>
+          </div>
+          <!-- Doc preview -->
+          <div class="relative">
+            <div class="absolute inset-x-6 -bottom-6 h-12 rounded-full bg-black/40 blur-2xl" aria-hidden="true"></div>
+            <div class="relative rounded-xl border border-white/10 bg-white p-5 text-ink shadow-card">
+              <div class="flex items-center justify-between border-b border-border pb-3">
+                <div>
+                  <p class="font-serif text-base italic text-navy">Scentrism</p>
+                  <p class="text-[10px] uppercase tracking-wider text-ink/50">Brand Blueprint · v1.2</p>
+                </div>
+                <span class="rounded-full bg-mint px-2 py-0.5 text-[10px] font-medium text-navy">Live</span>
+              </div>
+              <div class="mt-4 space-y-3 text-xs text-ink/70">
+                <div class="flex items-baseline justify-between gap-4">
+                  <span class="text-[10px] uppercase tracking-wider text-ink/50">Positioning</span>
+                  <span class="truncate text-right text-navy">The mindful fragrance house.</span>
+                </div>
+                <div class="flex items-baseline justify-between gap-4">
+                  <span class="text-[10px] uppercase tracking-wider text-ink/50">Audience</span>
+                  <span class="truncate text-right text-navy">Quiet luxury seekers, 28–45.</span>
+                </div>
+                <div class="flex items-baseline justify-between gap-4">
+                  <span class="text-[10px] uppercase tracking-wider text-ink/50">Tone</span>
+                  <span class="truncate text-right text-navy">Considered · Sensorial · Warm</span>
+                </div>
+                <div class="flex items-baseline justify-between gap-4">
+                  <span class="text-[10px] uppercase tracking-wider text-ink/50">Identity</span>
+                  <span class="truncate text-right text-navy">Editorial serif + soft neutrals</span>
+                </div>
+              </div>
+              <div class="mt-4 grid grid-cols-4 gap-1.5">
+                <span class="h-6 rounded bg-navy"></span>
+                <span class="h-6 rounded bg-mint"></span>
+                <span class="h-6 rounded bg-steel"></span>
+                <span class="h-6 rounded bg-ink/80"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACCELERATE ===== -->
+<section id="accelerate" class="relative py-28" style="background-color:oklch(0.985 0.005 240)">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs uppercase tracking-[0.22em] text-navy/60">Accelerate</p>
+      <h2 class="mt-3 text-4xl font-semibold tracking-[-0.02em] text-navy md:text-5xl">Accelerate<span class="text-navy/30">™</span></h2>
+      <p class="mt-4 text-lg text-ink/70">Grow a brand worth following.</p>
+    </div>
+    <div class="mt-14 grid gap-5 md:grid-cols-3">
+      <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="shield-check" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Brand Audit™</h3>
+        <p class="mt-1.5 text-sm text-ink/65">Diagnose your brand's clarity and consistency.</p>
+      </div>
+      <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="radar" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Competitor Radar™</h3>
+        <p class="mt-1.5 text-sm text-ink/65">Watch your category in real time.</p>
+      </div>
+      <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="megaphone" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Campaign Architect™</h3>
+        <p class="mt-1.5 text-sm text-ink/65">Plan campaigns with strategy baked in.</p>
+      </div>
+      <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="pen-line" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Content Studio™</h3>
+        <p class="mt-1.5 text-sm text-ink/65">Generate on-brand content at scale.</p>
+      </div>
+      <div class="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="shield-check" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Brand Guardian™</h3>
+        <p class="mt-1.5 text-sm text-ink/65">Protect your tone, story, and identity.</p>
+      </div>
+      <!-- Growth Blueprint full-width -->
+      <div class="relative overflow-hidden rounded-2xl border border-navy/15 bg-navy p-6 text-white md:col-span-3">
+        <div class="grid items-center gap-8 md:grid-cols-2">
+          <div>
+            <p class="text-xs uppercase tracking-[0.18em] text-mint">Output</p>
+            <h3 class="mt-2 text-3xl font-semibold tracking-tight">Growth Blueprint™</h3>
+            <p class="mt-3 max-w-md text-sm text-white/70">A living dashboard of campaigns, content, and category signal — your brand on a growth curve.</p>
+            <a href="#" class="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-mint">
+              See the Growth view <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+            </a>
+          </div>
+          <!-- Analytics preview -->
+          <div class="rounded-xl border border-white/10 bg-white p-5 text-ink shadow-card">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-[10px] uppercase tracking-wider text-ink/50">Growth this quarter</p>
+                <p class="mt-1 text-2xl font-semibold tracking-tight text-navy">+42.8%</p>
+              </div>
+              <div class="flex items-center gap-1 rounded-full bg-mint px-2.5 py-1 text-[10px] font-medium text-navy">
+                <i data-lucide="line-chart" class="h-3 w-3"></i> On track
+              </div>
+            </div>
+            <!-- Bar chart -->
+            <div class="mt-5 flex h-28 items-end gap-1.5">
+              <div class="flex-1 rounded-t-sm bg-navy" style="height:38%;opacity:0.35"></div>
+              <div class="flex-1 rounded-t-sm bg-navy" style="height:52%;opacity:0.41"></div>
+              <div class="flex-1 rounded-t-sm bg-navy" style="height:44%;opacity:0.47"></div>
+              <div class="flex-1 rounded-t-sm bg-navy" style="height:70%;opacity:0.53"></div>
+              <div class="flex-1 rounded-t-sm bg-navy" style="height:58%;opacity:0.59"></div>
+              <div class="flex-1 rounded-t-sm bg-navy" style="height:78%;opacity:0.65"></div>
+              <div class="flex-1 rounded-t-sm bg-navy" style="height:66%;opacity:0.71"></div>
+              <div class="flex-1 rounded-t-sm bg-navy" style="height:84%;opacity:0.77"></div>
+              <div class="flex-1 rounded-t-sm bg-navy" style="height:72%;opacity:0.83"></div>
+              <div class="flex-1 rounded-t-sm bg-navy" style="height:92%;opacity:0.89"></div>
+            </div>
+            <div class="mt-4 grid grid-cols-3 gap-3 text-center">
+              <div class="rounded-lg bg-steel/50 py-2">
+                <p class="text-sm font-semibold text-navy">12</p>
+                <p class="text-[10px] uppercase tracking-wider text-ink/50">Campaigns</p>
+              </div>
+              <div class="rounded-lg bg-steel/50 py-2">
+                <p class="text-sm font-semibold text-navy">184</p>
+                <p class="text-[10px] uppercase tracking-wider text-ink/50">Posts</p>
+              </div>
+              <div class="rounded-lg bg-steel/50 py-2">
+                <p class="text-sm font-semibold text-navy">2.1k</p>
+                <p class="text-[10px] uppercase tracking-wider text-ink/50">Mentions</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SHOWCASE ===== -->
+<section id="showcase" class="py-28">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs uppercase tracking-[0.22em] text-navy/60">Showcase</p>
+      <h2 class="mt-3 text-4xl font-semibold tracking-[-0.02em] text-navy md:text-5xl">Built with Visionyr</h2>
+      <p class="mt-4 text-lg text-ink/70">Brands shaped, defined, and accelerated by Visionyr.</p>
+    </div>
+    <div class="mt-14 grid gap-5 md:grid-cols-3">
+
+      <!-- Scentrism -->
+      <article class="group overflow-hidden rounded-2xl border border-border bg-white transition-all hover:-translate-y-0.5 hover:shadow-card">
+        <div class="relative overflow-hidden" style="aspect-ratio:4/3">
+          <div class="absolute inset-0" style="background:linear-gradient(135deg,#14213D 0%,#DCEAF7 60%,#B8FFF1 100%)"></div>
+          <div class="absolute inset-0 grid place-items-center">
+            <span class="font-serif text-3xl italic" style="color:rgba(255,255,255,0.95)">Scentrism</span>
+          </div>
+          <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between rounded-xl bg-white/85 px-3 py-2 text-xs backdrop-blur-sm">
+            <span class="truncate text-navy/70">The Mindful Fragrance House</span>
+            <div class="flex shrink-0 gap-1">
+              <span class="h-3 w-3 rounded-full border border-black/5" style="background:#14213D"></span>
+              <span class="h-3 w-3 rounded-full border border-black/5" style="background:#DCEAF7"></span>
+              <span class="h-3 w-3 rounded-full border border-black/5" style="background:#B8FFF1"></span>
+              <span class="h-3 w-3 rounded-full border border-black/5" style="background:#F4EFE6"></span>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold tracking-tight text-navy">Scentrism</h3>
+            <span class="rounded-full border border-border px-2 py-0.5 text-[10px] uppercase tracking-wider text-ink/60">Mindful Fragrance Brand</span>
+          </div>
+          <div class="mt-4 space-y-2 text-sm">
+            <div class="flex items-baseline justify-between gap-4">
+              <span class="text-[10px] uppercase tracking-wider text-ink/50">Positioning</span>
+              <span class="text-right text-navy">The Mindful Fragrance House</span>
+            </div>
+            <div class="flex items-baseline justify-between gap-4">
+              <span class="text-[10px] uppercase tracking-wider text-ink/50">Audience</span>
+              <span class="text-right text-navy">Urban Professionals</span>
+            </div>
+            <div class="flex items-baseline justify-between gap-4">
+              <span class="text-[10px] uppercase tracking-wider text-ink/50">Identity</span>
+              <span class="text-right text-navy">Quiet Luxury</span>
+            </div>
+          </div>
+          <div class="mt-4 flex items-center gap-2 rounded-lg bg-mint/30 px-3 py-2">
+            <i data-lucide="check" class="h-3.5 w-3.5 text-navy"></i>
+            <span class="text-xs font-medium text-navy">Complete Brand Blueprint Generated</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Next Victory -->
+      <article class="group overflow-hidden rounded-2xl border border-border bg-white transition-all hover:-translate-y-0.5 hover:shadow-card">
+        <div class="relative overflow-hidden" style="aspect-ratio:4/3">
+          <div class="absolute inset-0" style="background:linear-gradient(135deg,#0B1320 0%,#14213D 60%,#B8FFF1 100%)"></div>
+          <div class="absolute inset-0 grid place-items-center">
+            <span class="font-serif text-3xl italic" style="color:rgba(255,255,255,0.95)">Next Victory</span>
+          </div>
+          <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between rounded-xl bg-white/85 px-3 py-2 text-xs backdrop-blur-sm">
+            <span class="truncate text-navy/70">Move Quiet. Win Loud.</span>
+            <div class="flex shrink-0 gap-1">
+              <span class="h-3 w-3 rounded-full border border-black/5" style="background:#0B1320"></span>
+              <span class="h-3 w-3 rounded-full border border-black/5" style="background:#14213D"></span>
+              <span class="h-3 w-3 rounded-full border border-black/5" style="background:#B8FFF1"></span>
+              <span class="h-3 w-3 rounded-full border border-black/5" style="background:#FFFFFF"></span>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold tracking-tight text-navy">Next Victory</h3>
+            <span class="rounded-full border border-border px-2 py-0.5 text-[10px] uppercase tracking-wider text-ink/60">Performance Lifestyle Brand</span>
+          </div>
+          <div class="mt-4 space-y-2 text-sm">
+            <div class="flex items-baseline justify-between gap-4">
+              <span class="text-[10px] uppercase tracking-wider text-ink/50">Positioning</span>
+              <span class="text-right text-navy">Move Quiet. Win Loud.</span>
+            </div>
+            <div class="flex items-baseline justify-between gap-4">
+              <span class="text-[10px] uppercase tracking-wider text-ink/50">Audience</span>
+              <span class="text-right text-navy">Modern Achievers</span>
+            </div>
+            <div class="flex items-baseline justify-between gap-4">
+              <span class="text-[10px] uppercase tracking-wider text-ink/50">Identity</span>
+              <span class="text-right text-navy">Bold Athletic Minimalism</span>
+            </div>
+          </div>
+          <div class="mt-4 flex items-center gap-2 rounded-lg bg-mint/30 px-3 py-2">
+            <i data-lucide="check" class="h-3.5 w-3.5 text-navy"></i>
+            <span class="text-xs font-medium text-navy">Complete Brand Blueprint Generated</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Firstly Coffee -->
+      <article class="group overflow-hidden rounded-2xl border border-border bg-white transition-all hover:-translate-y-0.5 hover:shadow-card">
+        <div class="relative overflow-hidden" style="aspect-ratio:4/3">
+          <div class="absolute inset-0" style="background:linear-gradient(135deg,#3B2A1A 0%,#A47148 60%,#F2EBDD 100%)"></div>
+          <div class="absolute inset-0 grid place-items-center">
+            <span class="font-serif text-3xl italic" style="color:rgba(255,255,255,0.95)">Firstly Coffee</span>
+          </div>
+          <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between rounded-xl bg-white/85 px-3 py-2 text-xs backdrop-blur-sm">
+            <span class="truncate text-navy/70">Thoughtful Coffee Rituals</span>
+            <div class="flex shrink-0 gap-1">
+              <span class="h-3 w-3 rounded-full border border-black/5" style="background:#3B2A1A"></span>
+              <span class="h-3 w-3 rounded-full border border-black/5" style="background:#A47148"></span>
+              <span class="h-3 w-3 rounded-full border border-black/5" style="background:#DCEAF7"></span>
+              <span class="h-3 w-3 rounded-full border border-black/5" style="background:#F2EBDD"></span>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold tracking-tight text-navy">Firstly Coffee</h3>
+            <span class="rounded-full border border-border px-2 py-0.5 text-[10px] uppercase tracking-wider text-ink/60">Modern Coffee Brand</span>
+          </div>
+          <div class="mt-4 space-y-2 text-sm">
+            <div class="flex items-baseline justify-between gap-4">
+              <span class="text-[10px] uppercase tracking-wider text-ink/50">Positioning</span>
+              <span class="text-right text-navy">Thoughtful Coffee Rituals</span>
+            </div>
+            <div class="flex items-baseline justify-between gap-4">
+              <span class="text-[10px] uppercase tracking-wider text-ink/50">Audience</span>
+              <span class="text-right text-navy">Young Professionals</span>
+            </div>
+            <div class="flex items-baseline justify-between gap-4">
+              <span class="text-[10px] uppercase tracking-wider text-ink/50">Identity</span>
+              <span class="text-right text-navy">Editorial Simplicity</span>
+            </div>
+          </div>
+          <div class="mt-4 flex items-center gap-2 rounded-lg bg-mint/30 px-3 py-2">
+            <i data-lucide="check" class="h-3.5 w-3.5 text-navy"></i>
+            <span class="text-xs font-medium text-navy">Complete Brand Blueprint Generated</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHO IT'S FOR ===== -->
+<section id="who-its-for" class="border-y border-border bg-white py-28">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs uppercase tracking-[0.22em] text-navy/60">Audience</p>
+      <h2 class="mt-3 text-4xl font-semibold tracking-[-0.02em] text-navy md:text-5xl">Who Visionyr Is For</h2>
+    </div>
+    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="group rounded-2xl border border-border bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="user" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Founder</h3>
+        <p class="mt-2 text-sm text-ink/65">Build your brand before building your team.</p>
+      </div>
+      <div class="group rounded-2xl border border-border bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="zap" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Startup</h3>
+        <p class="mt-2 text-sm text-ink/65">Create positioning and identity faster.</p>
+      </div>
+      <div class="group rounded-2xl border border-border bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="coffee" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Coffee Brands</h3>
+        <p class="mt-2 text-sm text-ink/65">Develop memorable brand systems.</p>
+      </div>
+      <div class="group rounded-2xl border border-border bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="droplets" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Fragrance Brands</h3>
+        <p class="mt-2 text-sm text-ink/65">Build premium sensory identities.</p>
+      </div>
+      <div class="group rounded-2xl border border-border bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="shirt" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Fashion Brands</h3>
+        <p class="mt-2 text-sm text-ink/65">Create stronger brand differentiation.</p>
+      </div>
+      <div class="group rounded-2xl border border-border bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="briefcase" class="h-5 w-5"></i>
+        </span>
+        <h3 class="mt-5 text-lg font-semibold tracking-tight text-navy">Agencies</h3>
+        <p class="mt-2 text-sm text-ink/65">Generate strategic brand foundations faster.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY ===== -->
+<section class="border-y border-border bg-white py-28">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs uppercase tracking-[0.22em] text-navy/60">Why Visionyr</p>
+      <h2 class="mt-3 text-4xl font-semibold tracking-[-0.02em] text-navy md:text-5xl">Three disciplines. One operating system for brand.</h2>
+    </div>
+    <div class="mt-14 grid gap-5 md:grid-cols-3">
+      <div class="relative rounded-2xl border border-border bg-white p-7">
+        <span class="font-serif text-sm italic text-navy/40">01</span>
+        <h3 class="mt-3 text-xl font-semibold tracking-tight text-navy">Think Like a Strategist</h3>
+        <p class="mt-3 text-sm leading-relaxed text-ink/70">Create clear positioning and stronger decisions.</p>
+      </div>
+      <div class="relative rounded-2xl border border-border bg-white p-7">
+        <span class="font-serif text-sm italic text-navy/40">02</span>
+        <h3 class="mt-3 text-xl font-semibold tracking-tight text-navy">Build Like a Brand Studio</h3>
+        <p class="mt-3 text-sm leading-relaxed text-ink/70">Generate professional brand foundations.</p>
+      </div>
+      <div class="relative rounded-2xl border border-border bg-white p-7">
+        <span class="font-serif text-sm italic text-navy/40">03</span>
+        <h3 class="mt-3 text-xl font-semibold tracking-tight text-navy">Grow Like a Modern Brand</h3>
+        <p class="mt-3 text-sm leading-relaxed text-ink/70">Campaigns, content, and category intelligence in one place.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section id="pricing" class="py-28">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs uppercase tracking-[0.22em] text-navy/60">Pricing</p>
+      <h2 class="mt-3 text-4xl font-semibold tracking-[-0.02em] text-navy md:text-5xl">Simple Pricing</h2>
+      <p class="mt-4 text-lg text-ink/70">Start free. Scale when your brand needs to.</p>
+    </div>
+    <div class="mt-14 grid items-stretch gap-5 md:grid-cols-3">
+
+      <!-- Explorer -->
+      <div class="relative flex flex-col rounded-2xl border border-border bg-white p-7">
+        <p class="text-xs uppercase tracking-[0.18em] text-navy/60">Explorer</p>
+        <div class="mt-4 flex items-baseline gap-1">
+          <span class="text-4xl font-semibold tracking-tight text-navy">Rp0</span>
+          <span class="text-sm text-ink/50">forever</span>
+        </div>
+        <ul class="mt-6 flex-1 space-y-3 text-sm text-ink/75">
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-navy"></i> 1 Brand Blueprint Preview
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-navy"></i> 1 Brand Audit Preview
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-navy"></i> Basic Recommendations
+          </li>
+        </ul>
+        <a href="create.html" class="mt-8 inline-flex items-center justify-center gap-1.5 rounded-full border border-navy/15 bg-white px-4 py-2.5 text-sm font-medium text-navy transition-colors hover:bg-steel/40">
+          Start Free <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+        </a>
+      </div>
+
+      <!-- Builder (featured) -->
+      <div class="relative flex flex-col rounded-2xl border border-navy bg-navy p-7 text-white shadow-glow md:-translate-y-3">
+        <span class="absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full bg-mint px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-navy">
+          <i data-lucide="star" class="h-3 w-3"></i> Recommended
+        </span>
+        <p class="text-xs uppercase tracking-[0.18em] text-mint">Builder</p>
+        <div class="mt-4 flex items-baseline gap-1">
+          <span class="text-4xl font-semibold tracking-tight text-white">Rp399.000</span>
+          <span class="text-sm text-white/60">/month</span>
+        </div>
+        <ul class="mt-6 flex-1 space-y-3 text-sm text-white/85">
+          <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-mint"></i> Unlimited Create™</li>
+          <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-mint"></i> Unlimited Accelerate™</li>
+          <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-mint"></i> Brand Blueprint™</li>
+          <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-mint"></i> Growth Blueprint™</li>
+          <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-mint"></i> Brand Guardian™</li>
+          <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-mint"></i> PDF Export</li>
+        </ul>
+        <a href="create.html" class="mt-8 inline-flex items-center justify-center gap-1.5 rounded-full bg-mint px-4 py-2.5 text-sm font-medium text-navy transition-colors hover:bg-white">
+          Upgrade to Builder <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+        </a>
+      </div>
+
+      <!-- Studio -->
+      <div class="relative flex flex-col rounded-2xl border border-border bg-white p-7">
+        <p class="text-xs uppercase tracking-[0.18em] text-navy/60">Studio</p>
+        <div class="mt-4 flex items-baseline gap-1">
+          <span class="text-4xl font-semibold tracking-tight text-navy">Rp1.299.000</span>
+          <span class="text-sm text-ink/50">/month</span>
+        </div>
+        <ul class="mt-6 flex-1 space-y-3 text-sm text-ink/75">
+          <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-navy"></i> Multi Brand Workspace</li>
+          <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-navy"></i> Team Collaboration</li>
+          <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-navy"></i> Agency Ready</li>
+          <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-navy"></i> Advanced Brand Guardian™</li>
+          <li class="flex items-start gap-2.5"><i data-lucide="check" class="mt-0.5 h-4 w-4 shrink-0 text-navy"></i> Priority Support</li>
+        </ul>
+        <a href="create.html" class="mt-8 inline-flex items-center justify-center gap-1.5 rounded-full border border-navy/15 bg-white px-4 py-2.5 text-sm font-medium text-navy transition-colors hover:bg-steel/40">
+          Talk to Sales <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="border-t border-border bg-white py-28">
+  <div class="mx-auto max-w-3xl px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs uppercase tracking-[0.22em] text-navy/60">FAQ</p>
+      <h2 class="mt-3 text-4xl font-semibold tracking-[-0.02em] text-navy md:text-5xl">Questions, answered.</h2>
+    </div>
+    <div class="mt-12 divide-y divide-border rounded-2xl border border-border bg-white">
+
+      <div class="faq-item">
+        <button class="faq-btn block w-full px-6 py-5 text-left">
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-base font-medium text-navy">What is Visionyr?</span>
+            <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border text-navy">
+              <i data-lucide="minus" class="faq-minus h-3.5 w-3.5 hidden"></i>
+              <i data-lucide="plus"  class="faq-plus  h-3.5 w-3.5"></i>
+            </span>
+          </div>
+        </button>
+        <div class="faq-answer px-6">
+          <div class="pb-5 text-sm text-ink/70 pr-10">Visionyr is an AI Brand Builder that helps entrepreneurs create and grow brands — generating positioning, identity, launch strategies, and ongoing campaigns in one platform.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn block w-full px-6 py-5 text-left">
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-base font-medium text-navy">Who is Visionyr for?</span>
+            <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border text-navy">
+              <i data-lucide="minus" class="faq-minus h-3.5 w-3.5 hidden"></i>
+              <i data-lucide="plus"  class="faq-plus  h-3.5 w-3.5"></i>
+            </span>
+          </div>
+        </button>
+        <div class="faq-answer px-6">
+          <div class="pb-5 text-sm text-ink/70 pr-10">Founders, startup teams, brand owners, agencies, and creative businesses across categories like fashion, beauty, fragrance, and coffee.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn block w-full px-6 py-5 text-left">
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-base font-medium text-navy">Can I use Visionyr if I already have a brand?</span>
+            <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border text-navy">
+              <i data-lucide="minus" class="faq-minus h-3.5 w-3.5 hidden"></i>
+              <i data-lucide="plus"  class="faq-plus  h-3.5 w-3.5"></i>
+            </span>
+          </div>
+        </button>
+        <div class="faq-answer px-6">
+          <div class="pb-5 text-sm text-ink/70 pr-10">Yes. Run a Brand Audit™, sharpen positioning with Brand Architect™, and use Accelerate™ to grow what already exists.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn block w-full px-6 py-5 text-left">
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-base font-medium text-navy">How does Brand Blueprint™ work?</span>
+            <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border text-navy">
+              <i data-lucide="minus" class="faq-minus h-3.5 w-3.5 hidden"></i>
+              <i data-lucide="plus"  class="faq-plus  h-3.5 w-3.5"></i>
+            </span>
+          </div>
+        </button>
+        <div class="faq-answer px-6">
+          <div class="pb-5 text-sm text-ink/70 pr-10">Answer a short discovery, and Visionyr generates a complete operating document: positioning, audience, tone, identity, and launch plan — exportable as a PDF.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn block w-full px-6 py-5 text-left">
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-base font-medium text-navy">Do I need design experience?</span>
+            <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border text-navy">
+              <i data-lucide="minus" class="faq-minus h-3.5 w-3.5 hidden"></i>
+              <i data-lucide="plus"  class="faq-plus  h-3.5 w-3.5"></i>
+            </span>
+          </div>
+        </button>
+        <div class="faq-answer px-6">
+          <div class="pb-5 text-sm text-ink/70 pr-10">No. Visionyr provides creative direction, examples, and visual guidance — you can pair it with any designer or use the outputs as-is.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn block w-full px-6 py-5 text-left">
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-base font-medium text-navy">How long does it take to generate a Brand Blueprint?</span>
+            <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border text-navy">
+              <i data-lucide="minus" class="faq-minus h-3.5 w-3.5 hidden"></i>
+              <i data-lucide="plus"  class="faq-plus  h-3.5 w-3.5"></i>
+            </span>
+          </div>
+        </button>
+        <div class="faq-answer px-6">
+          <div class="pb-5 text-sm text-ink/70 pr-10">Most Brand Blueprints are generated within minutes.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-btn block w-full px-6 py-5 text-left">
+          <div class="flex items-center justify-between gap-4">
+            <span class="text-base font-medium text-navy">Can Visionyr help existing brands grow?</span>
+            <span class="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-border text-navy">
+              <i data-lucide="minus" class="faq-minus h-3.5 w-3.5 hidden"></i>
+              <i data-lucide="plus"  class="faq-plus  h-3.5 w-3.5"></i>
+            </span>
+          </div>
+        </button>
+        <div class="faq-answer px-6">
+          <div class="pb-5 text-sm text-ink/70 pr-10">Yes. Accelerate™ helps brands improve positioning, campaigns, content, and growth opportunities.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="border-t border-border bg-white py-28">
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs uppercase tracking-[0.22em] text-navy/60">Contact</p>
+      <h2 class="mt-3 text-4xl font-semibold tracking-[-0.02em] text-navy md:text-5xl">Let's Build Something Worth Remembering.</h2>
+      <p class="mt-4 text-lg text-ink/70">Questions, partnerships, demos, or enterprise inquiries.</p>
+    </div>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <a href="mailto:hello@visionyr.co" class="group flex flex-col items-center gap-3 rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="mail" class="h-5 w-5"></i>
+        </span>
+        <span class="text-sm font-medium text-navy">hello@visionyr.co</span>
+      </a>
+      <a href="#" class="group flex flex-col items-center gap-3 rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="linkedin" class="h-5 w-5"></i>
+        </span>
+        <span class="text-sm font-medium text-navy">LinkedIn</span>
+      </a>
+      <a href="#" class="group flex flex-col items-center gap-3 rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="instagram" class="h-5 w-5"></i>
+        </span>
+        <span class="text-sm font-medium text-navy">Instagram</span>
+      </a>
+      <a href="#" class="group flex flex-col items-center gap-3 rounded-2xl border border-border bg-white p-6 transition-all hover:-translate-y-0.5 hover:border-navy/20 hover:shadow-card">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-steel/60 text-navy transition-colors group-hover:bg-mint">
+          <i data-lucide="calendar" class="h-5 w-5"></i>
+        </span>
+        <span class="text-sm font-medium text-navy">Book a Demo</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="relative overflow-hidden bg-navy py-28 text-white">
+  <div class="pointer-events-none absolute inset-0 opacity-30" style="background-image:radial-gradient(600px circle at 20% 20%, rgba(184,255,241,0.18), transparent 60%), radial-gradient(500px circle at 80% 80%, rgba(220,234,247,0.12), transparent 60%)" aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-3xl px-6 text-center">
+    <h2 class="text-balance text-5xl font-semibold tracking-[-0.02em] md:text-6xl">
+      Ready to Build Your <span class="font-serif italic">Brand?</span>
+    </h2>
+    <p class="mx-auto mt-5 max-w-xl text-white/70">Join the first generation of entrepreneurs building brands with AI.</p>
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+      <a href="create.html" class="inline-flex items-center gap-2 rounded-full bg-mint px-5 py-3 text-sm font-medium text-navy transition-colors hover:bg-white">
+        Generate My Brand Blueprint <i data-lucide="arrow-right" class="h-4 w-4"></i>
+      </a>
+      <a href="#" class="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10">
+        Book a Demo
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="bg-white">
+  <div class="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-4">
+    <div class="md:col-span-2">
+      <a href="#" class="flex items-center gap-2">
+        <span class="grid h-7 w-7 place-items-center rounded-md bg-navy text-white">
+          <span class="block h-2 w-2 rounded-full bg-mint"></span>
+        </span>
+        <span class="text-[17px] font-semibold tracking-tight text-navy">
+          Visionyr<span class="text-navy/40">™</span>
+        </span>
+      </a>
+      <p class="mt-4 max-w-sm font-serif text-lg italic text-navy/70">Build the Brand Behind the Vision™</p>
+    </div>
+    <div>
+      <p class="text-xs uppercase tracking-[0.18em] text-navy/60">Product</p>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        <li><a href="#create"      class="text-ink/70 transition-colors hover:text-navy">Create™</a></li>
+        <li><a href="#accelerate"  class="text-ink/70 transition-colors hover:text-navy">Accelerate™</a></li>
+        <li><a href="#pricing"     class="text-ink/70 transition-colors hover:text-navy">Pricing</a></li>
+        <li><a href="#faq"         class="text-ink/70 transition-colors hover:text-navy">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-xs uppercase tracking-[0.18em] text-navy/60">Company</p>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        <li><a href="#contact" class="text-ink/70 transition-colors hover:text-navy">Contact</a></li>
+        <li><a href="#"        class="text-ink/70 transition-colors hover:text-navy">Privacy Policy</a></li>
+        <li><a href="#"        class="text-ink/70 transition-colors hover:text-navy">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-border">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-ink/55 md:flex-row">
+      <span>© <span id="year"></span> Visionyr™ · visionyr.co</span>
+      <span>Made for entrepreneurs who think brand-first.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  lucide.createIcons();
+
+  // FAQ accordion — first item open by default
+  const faqBtns = document.querySelectorAll('.faq-btn');
+
+  function openFaq(idx) {
+    faqBtns.forEach((btn, i) => {
+      const answer = btn.nextElementSibling;
+      const plus   = btn.querySelector('.faq-plus');
+      const minus  = btn.querySelector('.faq-minus');
+      if (i === idx) {
+        answer.classList.add('open');
+        plus.classList.add('hidden');
+        minus.classList.remove('hidden');
+      } else {
+        answer.classList.remove('open');
+        plus.classList.remove('hidden');
+        minus.classList.add('hidden');
+      }
+    });
+  }
+
+  openFaq(0);
+
+  faqBtns.forEach((btn, idx) => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.nextElementSibling.classList.contains('open');
+      if (isOpen) {
+        btn.nextElementSibling.classList.remove('open');
+        btn.querySelector('.faq-plus').classList.remove('hidden');
+        btn.querySelector('.faq-minus').classList.add('hidden');
+      } else {
+        openFaq(idx);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

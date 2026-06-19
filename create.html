@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generate Your Brand Blueprint™ — Visionyr</title>
+  <meta name="description" content="Tell us about your vision and Visionyr will generate a complete Brand Blueprint in minutes." />
+  <meta property="og:title" content="Generate Your Brand Blueprint™ — Visionyr" />
+  <meta property="og:description" content="A premium AI-powered Brand Blueprint, built around your vision." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <style type="text/tailwindcss">
+    @theme {
+      --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+      --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+      --color-navy: oklch(0.24 0.06 264);
+      --color-mint: oklch(0.95 0.06 178);
+      --color-steel: oklch(0.94 0.022 245);
+      --color-ink: oklch(0.27 0 0);
+      --color-background: oklch(1 0 0);
+      --color-foreground: oklch(0.27 0 0);
+      --color-border: oklch(0.92 0.01 245);
+      --shadow-soft: 0 1px 2px rgba(20,33,61,0.04), 0 8px 24px rgba(20,33,61,0.06);
+      --shadow-card: 0 1px 0 rgba(20,33,61,0.04), 0 24px 48px -16px rgba(20,33,61,0.12);
+      --shadow-glow: 0 30px 80px -30px rgba(20,33,61,0.35);
+    }
+    @layer base {
+      * { border-color: var(--color-border); }
+      body {
+        background-color: var(--color-background);
+        color: var(--color-foreground);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      ::selection { background: oklch(0.95 0.06 178); color: oklch(0.24 0.06 264); }
+    }
+    @utility grid-bg {
+      background-image:
+        linear-gradient(to right, color-mix(in oklab, oklch(0.24 0.06 264) 6%, transparent) 1px, transparent 1px),
+        linear-gradient(to bottom, color-mix(in oklab, oklch(0.24 0.06 264) 6%, transparent) 1px, transparent 1px);
+      background-size: 56px 56px;
+    }
+  </style>
+
+  <style>
+    @keyframes vy-rise {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .animate-rise { animation: vy-rise 0.7s cubic-bezier(0.2,0.7,0.2,1) both; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner {
+      display: inline-block;
+      width: 12px; height: 12px;
+      border: 2px solid currentColor;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      flex-shrink: 0;
+    }
+    .spinner-lg {
+      width: 14px; height: 14px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-background text-foreground">
+
+<!-- ===== NAV ===== -->
+<header class="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+    <a href="index.html" class="flex items-center gap-2">
+      <span class="grid h-7 w-7 place-items-center rounded-md bg-navy text-white">
+        <span class="block h-2 w-2 rounded-full bg-mint"></span>
+      </span>
+      <span class="text-[17px] font-semibold tracking-tight text-navy">
+        Visionyr<span class="text-navy/40">™</span>
+      </span>
+    </a>
+    <a href="index.html" class="inline-flex items-center gap-1.5 rounded-full border border-navy/15 bg-white px-3.5 py-1.5 text-sm text-navy/80 transition-colors hover:bg-steel/40">
+      <i data-lucide="arrow-left" class="h-3.5 w-3.5"></i> Back to home
+    </a>
+  </div>
+</header>
+
+<main class="relative">
+  <div class="absolute inset-0 grid-bg opacity-50" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute inset-x-0 top-0 h-[420px] bg-gradient-to-b from-steel/40 to-transparent" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-5xl px-6 pb-24 pt-14 lg:pt-20">
+
+    <!-- ===== STAGE: FORM ===== -->
+    <div id="stage-form" class="animate-rise">
+
+      <!-- Header -->
+      <div class="mx-auto max-w-2xl text-center">
+        <div class="inline-flex items-center gap-2 rounded-full border border-navy/10 bg-white/70 px-3 py-1.5 text-xs text-navy/80 shadow-soft">
+          <i data-lucide="sparkles" class="h-3 w-3 text-navy"></i>
+          Visionyr Create™
+        </div>
+        <h1 class="mt-5 text-balance text-4xl font-semibold tracking-[-0.02em] text-navy md:text-5xl">
+          Generate Your Brand <span class="font-serif italic">Blueprint™</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-xl text-pretty text-base text-ink/70">
+          Tell us about your vision and Visionyr will generate a complete Brand Blueprint in minutes.
+        </p>
+      </div>
+
+      <!-- Form card -->
+      <div class="mx-auto mt-10 max-w-2xl">
+        <!-- Progress header -->
+        <div class="mb-6 flex items-center justify-between gap-3">
+          <p id="progress-label" class="text-xs uppercase tracking-wide text-ink/50">Step 1 of 5</p>
+          <p id="progress-step-name" class="text-xs text-ink/50">Brand Name</p>
+        </div>
+        <div id="progress-bar" class="mb-10 flex gap-1.5">
+          <div class="progress-segment h-1 flex-1 rounded-full bg-navy"></div>
+          <div class="progress-segment h-1 flex-1 rounded-full bg-navy/10"></div>
+          <div class="progress-segment h-1 flex-1 rounded-full bg-navy/10"></div>
+          <div class="progress-segment h-1 flex-1 rounded-full bg-navy/10"></div>
+          <div class="progress-segment h-1 flex-1 rounded-full bg-navy/10"></div>
+        </div>
+
+        <div class="rounded-3xl border border-navy/10 bg-white p-6 shadow-card md:p-10">
+
+          <!-- Step 0: brandName -->
+          <div id="step-0" class="step-content">
+            <label class="text-xs uppercase tracking-wide text-ink/50">Brand Name</label>
+            <h2 class="mt-1 text-2xl font-semibold tracking-tight text-navy">What should we call your brand?</h2>
+            <input
+              id="input-brandName"
+              type="text"
+              placeholder="e.g. Scentrism"
+              class="mt-3 w-full rounded-xl border border-navy/15 bg-white px-4 py-3 text-base text-navy placeholder:text-ink/40 outline-none transition-colors focus:border-navy focus:ring-2 focus:ring-navy/10"
+            />
+          </div>
+
+          <!-- Step 1: industry -->
+          <div id="step-1" class="step-content hidden">
+            <label class="text-xs uppercase tracking-wide text-ink/50">Industry</label>
+            <h2 class="mt-1 text-2xl font-semibold tracking-tight text-navy">Which category are you building in?</h2>
+            <div id="industry-grid" class="mt-4 grid grid-cols-2 gap-2 md:grid-cols-3">
+              <!-- populated by JS -->
+            </div>
+          </div>
+
+          <!-- Step 2: audience -->
+          <div id="step-2" class="step-content hidden">
+            <label class="text-xs uppercase tracking-wide text-ink/50">Target Audience</label>
+            <h2 class="mt-1 text-2xl font-semibold tracking-tight text-navy">Who are you building this for?</h2>
+            <textarea
+              id="input-audience"
+              rows="5"
+              placeholder="Describe your ideal customers."
+              class="mt-3 w-full resize-none rounded-xl border border-navy/15 bg-white px-4 py-3 text-base text-navy placeholder:text-ink/40 outline-none transition-colors focus:border-navy focus:ring-2 focus:ring-navy/10"
+            ></textarea>
+          </div>
+
+          <!-- Step 3: pricePosition -->
+          <div id="step-3" class="step-content hidden">
+            <label class="text-xs uppercase tracking-wide text-ink/50">Price Position</label>
+            <h2 class="mt-1 text-2xl font-semibold tracking-tight text-navy">Where do you want to sit in the market?</h2>
+            <div id="price-grid" class="mt-4 grid grid-cols-2 gap-2 md:grid-cols-4">
+              <!-- populated by JS -->
+            </div>
+          </div>
+
+          <!-- Step 4: vision -->
+          <div id="step-4" class="step-content hidden">
+            <label class="text-xs uppercase tracking-wide text-ink/50">Brand Vision</label>
+            <h2 class="mt-1 text-2xl font-semibold tracking-tight text-navy">What's the vision behind your brand?</h2>
+            <textarea
+              id="input-vision"
+              rows="8"
+              placeholder="Describe the vision behind your brand.&#10;&#10;Example: We want to build a premium fragrance brand focused on emotional wellness and mindful living."
+              class="mt-3 w-full resize-none rounded-xl border border-navy/15 bg-white px-4 py-3 text-base text-navy placeholder:text-ink/40 outline-none transition-colors focus:border-navy focus:ring-2 focus:ring-navy/10"
+            ></textarea>
+          </div>
+
+          <!-- Nav buttons -->
+          <div class="mt-8 flex items-center justify-between gap-3">
+            <button
+              id="btn-back"
+              type="button"
+              class="inline-flex items-center gap-1.5 rounded-full border border-navy/15 bg-white px-4 py-2.5 text-sm font-medium text-navy transition-colors hover:bg-steel/40 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <i data-lucide="arrow-left" class="h-3.5 w-3.5"></i> Back
+            </button>
+            <button
+              id="btn-next"
+              type="button"
+              class="group inline-flex items-center gap-2 rounded-full bg-navy px-5 py-2.5 text-sm font-medium text-white shadow-soft transition-all hover:bg-navy/90 hover:shadow-glow disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <span id="btn-next-text">Continue</span>
+              <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <p class="mt-6 text-center text-xs text-ink/50">Your inputs are private. Visionyr never shares your brand vision.</p>
+      </div>
+    </div>
+
+    <!-- ===== STAGE: LOADING ===== -->
+    <div id="stage-loading" class="mx-auto max-w-2xl text-center" style="display:none">
+      <div class="inline-flex items-center gap-2 rounded-full border border-navy/10 bg-white/70 px-3 py-1.5 text-xs text-navy/80 shadow-soft">
+        <span class="spinner spinner-lg text-navy"></span>
+        Generating
+      </div>
+      <h1 class="mt-5 text-balance text-4xl font-semibold tracking-[-0.02em] text-navy md:text-5xl">
+        Building Your Brand <span class="font-serif italic">Blueprint…</span>
+      </h1>
+      <p class="mx-auto mt-4 max-w-md text-pretty text-base text-ink/70">
+        Visionyr is crafting a complete brand system for
+        <span id="loading-brand-name" class="font-medium text-navy">your brand</span>.
+        Estimated time: 15–30 seconds.
+      </p>
+
+      <div class="mt-10 rounded-3xl border border-navy/10 bg-white p-8 text-left shadow-card">
+        <div class="flex items-center justify-between text-xs uppercase tracking-wide text-ink/50">
+          <span>Progress</span>
+          <span id="progress-pct">0%</span>
+        </div>
+        <div class="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-navy/10">
+          <div id="progress-fill" class="h-full rounded-full bg-navy transition-[width] duration-150" style="width:0%"></div>
+        </div>
+
+        <ul id="loading-steps" class="mt-8 space-y-3">
+          <!-- Steps rendered by JS -->
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== STAGE: RESULT ===== -->
+    <div id="stage-result" style="display:none">
+
+      <!-- Result header -->
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 rounded-full border border-navy/10 bg-white/70 px-3 py-1.5 text-xs text-navy/80 shadow-soft">
+            <i data-lucide="sparkles" class="h-3 w-3 text-navy"></i>
+            Brand Blueprint™ · Generated by Visionyr
+          </div>
+          <h1 id="result-brand-name" class="mt-5 text-balance text-4xl font-semibold tracking-[-0.02em] text-navy md:text-5xl"></h1>
+          <p id="result-tagline" class="mt-3 text-pretty text-lg text-ink/70"></p>
+          <div id="result-chips" class="mt-4 flex flex-wrap gap-2 text-xs"></div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button id="btn-restart" type="button" class="inline-flex items-center gap-1.5 rounded-full border border-navy/15 bg-white px-4 py-2.5 text-sm font-medium text-navy transition-colors hover:bg-steel/40">
+            <i data-lucide="refresh-cw" class="h-3.5 w-3.5"></i> Generate Another Blueprint
+          </button>
+          <button type="button" disabled class="inline-flex cursor-not-allowed items-center gap-1.5 rounded-full border border-navy/15 bg-white px-4 py-2.5 text-sm font-medium text-navy/60" title="Coming soon">
+            <i data-lucide="download" class="h-3.5 w-3.5"></i> Download PDF
+            <span class="ml-1 rounded-full bg-steel/60 px-1.5 py-0.5 text-[10px] uppercase tracking-wide text-navy/70">Soon</span>
+          </button>
+          <a href="index.html#pricing" class="inline-flex items-center gap-1.5 rounded-full bg-navy px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-navy/90 hover:shadow-glow">
+            <i data-lucide="crown" class="h-3.5 w-3.5 text-mint"></i> Upgrade to Builder
+          </a>
+        </div>
+      </div>
+
+      <!-- Score row -->
+      <div class="mt-10 grid gap-4 md:grid-cols-3">
+        <div class="rounded-2xl border border-navy/10 bg-white p-5 shadow-soft">
+          <div class="flex items-center justify-between">
+            <p class="text-xs uppercase tracking-wide text-ink/50">Brand Score</p>
+            <span class="h-2 w-2 rounded-full bg-navy"></span>
+          </div>
+          <p id="score-brand" class="mt-3 text-3xl font-semibold tracking-tight text-navy"></p>
+          <div class="mt-3 h-1 w-full overflow-hidden rounded-full bg-navy/10">
+            <div id="score-brand-bar" class="h-full rounded-full bg-navy"></div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-navy/10 bg-white p-5 shadow-soft">
+          <div class="flex items-center justify-between">
+            <p class="text-xs uppercase tracking-wide text-ink/50">Market Fit</p>
+            <span class="h-2 w-2 rounded-full bg-mint"></span>
+          </div>
+          <p id="score-market" class="mt-3 text-3xl font-semibold tracking-tight text-navy"></p>
+          <div class="mt-3 h-1 w-full overflow-hidden rounded-full bg-navy/10">
+            <div id="score-market-bar" class="h-full rounded-full bg-navy"></div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-navy/10 bg-white p-5 shadow-soft">
+          <div class="flex items-center justify-between">
+            <p class="text-xs uppercase tracking-wide text-ink/50">Growth Potential</p>
+            <span class="h-2 w-2 rounded-full" style="background:oklch(0.94 0.022 245)"></span>
+          </div>
+          <p id="score-growth" class="mt-3 text-3xl font-semibold tracking-tight text-navy"></p>
+          <div class="mt-3 h-1 w-full overflow-hidden rounded-full bg-navy/10">
+            <div id="score-growth-bar" class="h-full rounded-full bg-navy"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main grid -->
+      <div class="mt-6 grid gap-5 lg:grid-cols-3">
+
+        <!-- Market Opportunity -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7 lg:col-span-2">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="trending-up" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">Market Opportunity</h3>
+          </div>
+          <div class="mt-5 text-[15px] leading-relaxed">
+            <p id="result-market-opportunity" class="text-ink/75"></p>
+          </div>
+        </section>
+
+        <!-- Brand Positioning -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="target" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">Brand Positioning</h3>
+          </div>
+          <div class="mt-5 text-[15px] leading-relaxed">
+            <p id="result-positioning" class="text-ink/75"></p>
+          </div>
+        </section>
+
+        <!-- Target Audience -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="users" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">Target Audience</h3>
+          </div>
+          <ul id="result-audience" class="mt-5 space-y-2.5 text-[15px] leading-relaxed text-ink/75"></ul>
+        </section>
+
+        <!-- Brand Personality -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="heart" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">Brand Personality</h3>
+          </div>
+          <div id="result-personality" class="mt-5 flex flex-wrap gap-2 text-[15px] leading-relaxed"></div>
+        </section>
+
+        <!-- Brand Values -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="compass" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">Brand Values</h3>
+          </div>
+          <ul id="result-values" class="mt-5 space-y-2.5 text-[15px] leading-relaxed text-ink/75"></ul>
+        </section>
+
+        <!-- Brand Story -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7 lg:col-span-2">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="book-open" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">Brand Story</h3>
+          </div>
+          <div class="mt-5 text-[15px] leading-relaxed">
+            <p id="result-story" class="whitespace-pre-line text-ink/75"></p>
+          </div>
+        </section>
+
+        <!-- Brand Voice -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="mic" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">Brand Voice</h3>
+          </div>
+          <ul id="result-voice" class="mt-5 space-y-2.5 text-[15px] leading-relaxed text-ink/75"></ul>
+        </section>
+
+        <!-- Naming Recommendations -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="type" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">Naming Recommendations</h3>
+          </div>
+          <ul id="result-naming" class="mt-5 space-y-2 text-[15px] leading-relaxed text-ink/75"></ul>
+        </section>
+
+        <!-- Tagline Ideas -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="tag" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">Tagline Ideas</h3>
+          </div>
+          <ul id="result-taglines" class="mt-5 space-y-2 text-[15px] leading-relaxed text-ink/75"></ul>
+        </section>
+
+        <!-- Visual Direction -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="palette" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">Visual Direction</h3>
+          </div>
+          <ul id="result-visual" class="mt-5 space-y-2.5 text-[15px] leading-relaxed text-ink/75"></ul>
+        </section>
+
+        <!-- Color Direction -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7 lg:col-span-2">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="palette" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">Color Direction</h3>
+          </div>
+          <div id="result-colors" class="mt-5 grid grid-cols-2 gap-3 md:grid-cols-5"></div>
+        </section>
+
+        <!-- Launch Strategy -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7 lg:col-span-2">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="rocket" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">Launch Strategy</h3>
+          </div>
+          <ol id="result-launch" class="mt-5 space-y-3 text-[15px] leading-relaxed text-ink/75"></ol>
+        </section>
+
+        <!-- Content Pillars -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="layers" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">Content Pillars</h3>
+          </div>
+          <ul id="result-pillars" class="mt-5 space-y-2 text-[15px] leading-relaxed text-ink/75"></ul>
+        </section>
+
+        <!-- 30-day plan -->
+        <section class="rounded-3xl border border-navy/10 bg-white p-6 shadow-soft md:p-7 lg:col-span-3">
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-steel/50"><i data-lucide="calendar-days" class="h-4 w-4 text-navy"></i></span>
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-navy">First 30-Day Action Plan</h3>
+          </div>
+          <div id="result-plan" class="mt-5 grid gap-4 md:grid-cols-3"></div>
+        </section>
+
+      </div>
+
+      <!-- Upsell -->
+      <div class="mt-10 overflow-hidden rounded-3xl border border-navy/10 bg-navy p-8 text-white shadow-card md:p-12">
+        <div class="flex flex-wrap items-center justify-between gap-6">
+          <div class="max-w-xl">
+            <p class="text-xs uppercase tracking-wide text-mint">Visionyr Builder</p>
+            <h3 class="mt-2 text-3xl font-semibold tracking-tight md:text-4xl">
+              Turn this Blueprint into a brand you can launch.
+            </h3>
+            <p class="mt-3 text-white/70">
+              Upgrade to Builder to unlock the full identity system, brand guidelines, launch campaigns, and a 90-day growth plan.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button id="btn-restart-2" type="button" class="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-white/10">
+              <i data-lucide="refresh-cw" class="h-3.5 w-3.5"></i> Generate Another
+            </button>
+            <a href="index.html#pricing" class="inline-flex items-center gap-1.5 rounded-full bg-mint px-5 py-2.5 text-sm font-medium text-navy transition-colors hover:bg-white">
+              <i data-lucide="crown" class="h-3.5 w-3.5"></i> Upgrade to Builder
+              <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /stage-result -->
+
+  </div>
+</main>
+
+<script>
+// ─── State ─────────────────────────────────────────────────────────────────
+const STEPS = [
+  { key: 'brandName',    label: 'Brand Name' },
+  { key: 'industry',     label: 'Industry' },
+  { key: 'audience',     label: 'Target Audience' },
+  { key: 'pricePosition',label: 'Price Position' },
+  { key: 'vision',       label: 'Brand Vision' },
+];
+const INDUSTRIES     = ['Fragrance','Coffee','Fashion','Beauty','Skincare','Agency','SaaS','F&B','Startup','Other'];
+const PRICE_POSITIONS = ['Budget','Mid-Market','Premium','Luxury'];
+const LOADING_STEPS   = [
+  'Analyzing market positioning',
+  'Defining brand personality',
+  'Crafting brand story & voice',
+  'Generating naming & taglines',
+  'Designing visual direction',
+  'Building 30-day launch plan',
+];
+
+let currentStep = 0;
+let formData = { brandName:'', industry:'', audience:'', pricePosition:'', vision:'' };
+let loadingInterval = null;
+
+// ─── Init ───────────────────────────────────────────────────────────────────
+lucide.createIcons();
+renderStep(0);
+initButtonListeners();
+
+// ─── Step rendering ─────────────────────────────────────────────────────────
+function renderStep(idx) {
+  currentStep = idx;
+
+  // Show/hide step containers
+  document.querySelectorAll('.step-content').forEach((el, i) => {
+    el.classList.toggle('hidden', i !== idx);
+  });
+
+  // Progress bar segments
+  document.querySelectorAll('.progress-segment').forEach((el, i) => {
+    el.className = 'progress-segment h-1 flex-1 rounded-full ' + (i <= idx ? 'bg-navy' : 'bg-navy/10');
+  });
+
+  // Labels
+  document.getElementById('progress-label').textContent = `Step ${idx + 1} of ${STEPS.length}`;
+  document.getElementById('progress-step-name').textContent = STEPS[idx].label;
+
+  // Back / Next buttons
+  const btnBack = document.getElementById('btn-back');
+  const btnNext = document.getElementById('btn-next');
+  btnBack.disabled = idx === 0;
+  document.getElementById('btn-next-text').textContent = idx === STEPS.length - 1 ? 'Generate Brand Blueprint™' : 'Continue';
+
+  // Populate grids for selection steps
+  if (idx === 1) renderGrid('industry-grid', INDUSTRIES, 'industry', 'md:grid-cols-3');
+  if (idx === 3) renderGrid('price-grid', PRICE_POSITIONS, 'pricePosition', 'md:grid-cols-4');
+
+  // Restore existing values
+  if (idx === 0) document.getElementById('input-brandName').value = formData.brandName;
+  if (idx === 2) document.getElementById('input-audience').value  = formData.audience;
+  if (idx === 4) document.getElementById('input-vision').value    = formData.vision;
+
+  // Auto-focus text inputs
+  if (idx === 0) setTimeout(() => document.getElementById('input-brandName').focus(), 50);
+  if (idx === 2) setTimeout(() => document.getElementById('input-audience').focus(), 50);
+  if (idx === 4) setTimeout(() => document.getElementById('input-vision').focus(), 50);
+
+  updateNextBtn();
+  lucide.createIcons();
+}
+
+function renderGrid(containerId, options, key, colClass) {
+  const grid = document.getElementById(containerId);
+  grid.innerHTML = '';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = opt;
+    const active = formData[key] === opt;
+    btn.className = `rounded-xl border px-4 py-3 text-sm font-medium transition-all ${
+      active
+        ? 'border-navy bg-navy text-white shadow-soft'
+        : 'border-navy/15 bg-white text-navy hover:bg-steel/40'
+    }`;
+    btn.addEventListener('click', () => {
+      formData[key] = opt;
+      renderGrid(containerId, options, key, colClass);
+      updateNextBtn();
+    });
+    grid.appendChild(btn);
+  });
+}
+
+function updateNextBtn() {
+  const btnNext = document.getElementById('btn-next');
+  const key = STEPS[currentStep].key;
+  let val = '';
+  if (key === 'brandName') val = document.getElementById('input-brandName').value.trim();
+  else if (key === 'industry') val = formData.industry;
+  else if (key === 'audience') val = document.getElementById('input-audience').value.trim();
+  else if (key === 'pricePosition') val = formData.pricePosition;
+  else if (key === 'vision') val = document.getElementById('input-vision').value.trim();
+  btnNext.disabled = !val;
+}
+
+// ─── Button listeners ────────────────────────────────────────────────────────
+function initButtonListeners() {
+  document.getElementById('btn-back').addEventListener('click', () => {
+    if (currentStep > 0) renderStep(currentStep - 1);
+  });
+
+  document.getElementById('btn-next').addEventListener('click', handleNext);
+
+  document.getElementById('input-brandName').addEventListener('input', updateNextBtn);
+  document.getElementById('input-brandName').addEventListener('keydown', e => { if (e.key === 'Enter') handleNext(); });
+  document.getElementById('input-audience').addEventListener('input', updateNextBtn);
+  document.getElementById('input-vision').addEventListener('input', updateNextBtn);
+
+  document.getElementById('btn-restart').addEventListener('click', restart);
+  document.getElementById('btn-restart-2').addEventListener('click', restart);
+}
+
+function handleNext() {
+  const key = STEPS[currentStep].key;
+  if (key === 'brandName')    formData.brandName     = document.getElementById('input-brandName').value.trim();
+  if (key === 'audience')     formData.audience      = document.getElementById('input-audience').value.trim();
+  if (key === 'vision')       formData.vision        = document.getElementById('input-vision').value.trim();
+
+  if (!canContinue()) return;
+
+  if (currentStep === STEPS.length - 1) {
+    showLoading();
+  } else {
+    renderStep(currentStep + 1);
+  }
+}
+
+function canContinue() {
+  const key = STEPS[currentStep].key;
+  if (key === 'brandName')     return formData.brandName.length > 0;
+  if (key === 'industry')      return formData.industry.length > 0;
+  if (key === 'audience')      return formData.audience.length > 0;
+  if (key === 'pricePosition') return formData.pricePosition.length > 0;
+  if (key === 'vision')        return formData.vision.length > 0;
+  return false;
+}
+
+// ─── Loading stage ───────────────────────────────────────────────────────────
+function showLoading() {
+  document.getElementById('stage-form').style.display    = 'none';
+  document.getElementById('stage-loading').style.display = 'block';
+  document.getElementById('stage-result').style.display  = 'none';
+
+  document.getElementById('loading-brand-name').textContent = formData.brandName || 'your brand';
+  renderLoadingSteps(-1);
+
+  const total = 9000;
+  const start = Date.now();
+  loadingInterval = setInterval(() => {
+    const elapsed = Date.now() - start;
+    const pct = Math.min(100, (elapsed / total) * 100);
+    const activeIdx = Math.min(LOADING_STEPS.length - 1, Math.floor((pct / 100) * LOADING_STEPS.length));
+
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent  = Math.round(pct) + '%';
+    renderLoadingSteps(activeIdx);
+
+    if (pct >= 100) {
+      clearInterval(loadingInterval);
+      setTimeout(showResult, 400);
+    }
+  }, 80);
+}
+
+function renderLoadingSteps(activeIdx) {
+  const ul = document.getElementById('loading-steps');
+  ul.innerHTML = '';
+  LOADING_STEPS.forEach((text, i) => {
+    const done   = i < activeIdx;
+    const active = i === activeIdx;
+    const li = document.createElement('li');
+    li.className = `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors ${active ? 'bg-steel/40' : ''}`;
+
+    let iconHtml = '';
+    if (done) {
+      iconHtml = `<span class="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-navy text-white">
+        <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20,6 9,17 4,12"/></svg>
+      </span>`;
+    } else if (active) {
+      iconHtml = `<span class="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-mint text-navy">
+        <span class="spinner text-navy" style="width:10px;height:10px"></span>
+      </span>`;
+    } else {
+      iconHtml = `<span class="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-navy/10 text-navy/40">
+        <span class="h-1.5 w-1.5 rounded-full bg-current"></span>
+      </span>`;
+    }
+
+    const textClass = done ? 'text-navy' : active ? 'font-medium text-navy' : 'text-ink/50';
+    li.innerHTML = `${iconHtml}<span class="${textClass}">${text}</span>`;
+    ul.appendChild(li);
+  });
+}
+
+// ─── Result stage ─────────────────────────────────────────────────────────────
+function showResult() {
+  document.getElementById('stage-form').style.display    = 'none';
+  document.getElementById('stage-loading').style.display = 'none';
+  document.getElementById('stage-result').style.display  = 'block';
+
+  const bp = buildBlueprint(formData);
+  renderResult(bp);
+  lucide.createIcons();
+}
+
+function renderResult(bp) {
+  // Header
+  document.getElementById('result-brand-name').textContent = bp.brandName;
+  document.getElementById('result-tagline').textContent    = bp.tagline;
+
+  const chips = document.getElementById('result-chips');
+  chips.innerHTML = '';
+  [formData.industry || 'Industry', formData.pricePosition || 'Positioning', 'Built with Visionyr'].forEach(label => {
+    const span = document.createElement('span');
+    span.className = 'inline-flex items-center rounded-full border border-navy/10 bg-white px-2.5 py-1 text-xs font-medium text-navy/80';
+    span.textContent = label;
+    chips.appendChild(span);
+  });
+
+  // Scores
+  document.getElementById('score-brand').textContent        = bp.scores.brand + '%';
+  document.getElementById('score-market').textContent       = bp.scores.market + '%';
+  document.getElementById('score-growth').textContent       = bp.scores.growth + '%';
+  document.getElementById('score-brand-bar').style.width    = bp.scores.brand + '%';
+  document.getElementById('score-market-bar').style.width   = bp.scores.market + '%';
+  document.getElementById('score-growth-bar').style.width   = bp.scores.growth + '%';
+
+  // Text fields
+  document.getElementById('result-market-opportunity').textContent = bp.marketOpportunity;
+  document.getElementById('result-positioning').textContent        = bp.positioning;
+  document.getElementById('result-story').textContent              = bp.story;
+
+  // Audience list
+  const audienceEl = document.getElementById('result-audience');
+  audienceEl.innerHTML = bp.audience.map(a =>
+    `<li class="flex gap-2"><svg class="mt-1 h-3.5 w-3.5 shrink-0 text-navy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20,6 9,17 4,12"/></svg> ${escHtml(a)}</li>`
+  ).join('');
+
+  // Personality chips
+  const personalityEl = document.getElementById('result-personality');
+  personalityEl.innerHTML = bp.personality.map(t =>
+    `<span class="inline-flex items-center rounded-full border border-navy/10 bg-white px-2.5 py-1 text-xs font-medium text-navy/80">${escHtml(t)}</span>`
+  ).join('');
+
+  // Values
+  document.getElementById('result-values').innerHTML = bp.values.map(v =>
+    `<li><p class="font-medium text-navy">${escHtml(v.title)}</p><p class="text-sm text-ink/65">${escHtml(v.desc)}</p></li>`
+  ).join('');
+
+  // Voice
+  document.getElementById('result-voice').innerHTML = bp.voice.map(v =>
+    `<li><p class="font-medium text-navy">${escHtml(v.title)}</p><p class="text-sm text-ink/65">${escHtml(v.desc)}</p></li>`
+  ).join('');
+
+  // Naming
+  document.getElementById('result-naming').innerHTML = bp.naming.map(n =>
+    `<li class="flex items-center justify-between rounded-lg border border-navy/10 bg-steel/20 px-3 py-2">
+      <span class="font-medium text-navy">${escHtml(n)}</span>
+      <span class="text-xs text-ink/50">.co</span>
+    </li>`
+  ).join('');
+
+  // Taglines
+  document.getElementById('result-taglines').innerHTML = bp.taglines.map(t =>
+    `<li class="rounded-lg border border-navy/10 bg-white px-3 py-2 text-sm">${escHtml(t)}</li>`
+  ).join('');
+
+  // Visual
+  document.getElementById('result-visual').innerHTML = bp.visual.map(v =>
+    `<li><p class="font-medium text-navy">${escHtml(v.title)}</p><p class="text-sm text-ink/65">${escHtml(v.desc)}</p></li>`
+  ).join('');
+
+  // Colors
+  document.getElementById('result-colors').innerHTML = bp.colors.map(c =>
+    `<div class="overflow-hidden rounded-xl border border-navy/10">
+      <div class="h-20 w-full" style="background:${c.hex}"></div>
+      <div class="bg-white px-3 py-2">
+        <p class="text-sm font-medium text-navy">${escHtml(c.name)}</p>
+        <p class="text-xs uppercase tracking-wide text-ink/50">${c.hex}</p>
+      </div>
+    </div>`
+  ).join('');
+
+  // Launch strategy
+  document.getElementById('result-launch').innerHTML = bp.launch.map((s, i) =>
+    `<li class="flex gap-3">
+      <span class="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-navy text-xs font-medium text-white">${i + 1}</span>
+      <div>
+        <p class="font-medium text-navy">${escHtml(s.title)}</p>
+        <p class="text-sm text-ink/65">${escHtml(s.desc)}</p>
+      </div>
+    </li>`
+  ).join('');
+
+  // Pillars
+  document.getElementById('result-pillars').innerHTML = bp.pillars.map(p =>
+    `<li class="flex items-start gap-2">
+      <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-navy"></span>
+      <span>${escHtml(p)}</span>
+    </li>`
+  ).join('');
+
+  // 30-day plan
+  document.getElementById('result-plan').innerHTML = bp.plan.map(p =>
+    `<div class="rounded-2xl border border-navy/10 bg-steel/20 p-5">
+      <p class="text-xs uppercase tracking-wide text-ink/50">${escHtml(p.week)}</p>
+      <p class="mt-1 font-medium text-navy">${escHtml(p.title)}</p>
+      <ul class="mt-3 space-y-2 text-sm text-ink/70">
+        ${p.items.map(item =>
+          `<li class="flex items-start gap-2">
+            <svg class="mt-0.5 h-3.5 w-3.5 shrink-0 text-navy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20,6 9,17 4,12"/></svg>
+            ${escHtml(item)}
+          </li>`
+        ).join('')}
+      </ul>
+    </div>`
+  ).join('');
+}
+
+// ─── Restart ─────────────────────────────────────────────────────────────────
+function restart() {
+  formData = { brandName:'', industry:'', audience:'', pricePosition:'', vision:'' };
+  currentStep = 0;
+
+  document.getElementById('stage-form').style.display    = 'block';
+  document.getElementById('stage-loading').style.display = 'none';
+  document.getElementById('stage-result').style.display  = 'none';
+
+  renderStep(0);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─── Blueprint generator ─────────────────────────────────────────────────────
+function buildBlueprint(d) {
+  const name     = d.brandName.trim() || 'Your Brand';
+  const industry = d.industry || 'modern';
+  const audience = d.audience.trim() || 'discerning customers who value craft and clarity';
+  const price    = d.pricePosition || 'Premium';
+  const vision   = d.vision.trim() || 'Build a distinctive brand that customers remember, repeat, and recommend.';
+
+  const lowerName     = name.toLowerCase();
+  const industryLower = industry.toLowerCase();
+  const seed = (name.length + audience.length + vision.length) % 7;
+
+  return {
+    brandName: name,
+    tagline: `${name} — where ${industryLower} meets intention.`,
+    scores: {
+      brand:  88 + seed,
+      market: 84 + ((seed + 3) % 8),
+      growth: 86 + ((seed + 5) % 6),
+    },
+    marketOpportunity:
+      `The ${industry} category is shifting from product-first to brand-first buying. Customers no longer just want what works — they want what means something. ${name} enters at the perfect moment, where ${price.toLowerCase()} buyers expect a story, a point of view, and a brand world they can belong to.`,
+    positioning:
+      `${name} is the ${price.toLowerCase()} ${industryLower} brand for people who want more than a product — they want a signal of who they are becoming. We compete on meaning, not features.`,
+    audience: [
+      `Primary: ${audience}`,
+      `Mindset: curious, intentional, willing to pay for quality and story.`,
+      `Lifestyle: design-aware, online-native, brand-literate.`,
+      `Decision driver: identity expression and emotional resonance.`,
+    ],
+    personality: ['Confident','Refined','Warm','Intentional','Modern','Quietly bold'],
+    values: [
+      { title: 'Craft',     desc: 'Everything we ship is considered, never compromised.' },
+      { title: 'Clarity',   desc: 'We say less so what we say lands harder.' },
+      { title: 'Resonance', desc: 'We build for the people who feel it, not the masses who scroll past.' },
+      { title: 'Longevity', desc: 'We design for the next ten years, not the next ten days.' },
+    ],
+    story:
+      `${name} began with a simple belief: ${vision}\n\nMost ${industryLower} brands chase attention. ${name} earns it — by showing up with intention, taste, and a clear point of view. We exist for the people who choose carefully, and who want the brands they love to choose carefully too.`,
+    voice: [
+      { title: 'Tone',          desc: 'Confident, warm, never loud. Speaks like a trusted insider, not a salesperson.' },
+      { title: 'Cadence',       desc: 'Short, clear sentences. Whitespace is part of the voice.' },
+      { title: 'Words we use',  desc: 'Craft, ritual, intention, modern, signal, considered.' },
+      { title: 'Words we avoid',desc: 'Game-changing, revolutionary, disrupt, hack.' },
+    ],
+    naming: [
+      lowerName,
+      `${lowerName}studio`,
+      `${lowerName}.world`,
+      `the${lowerName}`,
+      `${lowerName}co`,
+    ],
+    taglines: [
+      `${name} — Build the Brand Behind the Vision.`,
+      `A new standard for ${industryLower}.`,
+      `Made with intention. Worn with meaning.`,
+      `For the ones who choose carefully.`,
+      `${name}. Quietly remarkable.`,
+    ],
+    visual: [
+      { title: 'Aesthetic',   desc: 'Editorial minimalism with warm, tactile accents. Premium without being cold.' },
+      { title: 'Typography',  desc: 'A modern serif for emotion paired with a clean sans for clarity.' },
+      { title: 'Imagery',     desc: 'Cinematic, intimate, natural light. Hands, texture, atmosphere over product-only shots.' },
+      { title: 'Layout',      desc: 'Generous whitespace. Strong hierarchy. Magazine-grade rhythm.' },
+    ],
+    colors: [
+      { name: 'Midnight',    hex: '#14213D' },
+      { name: 'Mint Signal', hex: '#B8FFF1' },
+      { name: 'Steel Light', hex: '#DCEAF7' },
+      { name: 'Ink',         hex: '#2B2B2B' },
+      { name: 'Paper',       hex: '#FAFAFA' },
+    ],
+    launch: [
+      { title: 'Pre-launch — Build anticipation',    desc: 'Tease the vision with founder POV content, behind-the-scenes craft, and a waitlist landing page.' },
+      { title: 'Launch week — Stake the position',   desc: 'Open with a manifesto piece, a hero campaign, and 3 founder-led launch posts across channels.' },
+      { title: 'Post-launch — Deepen the brand world',desc: 'Roll out the editorial content engine: rituals, stories, and a community drop cadence.' },
+    ],
+    pillars: [
+      'Founder POV & vision',
+      'Craft & process stories',
+      'Customer rituals & moments',
+      'Editorial culture content (the world your brand lives in)',
+      'Product education & meaning',
+    ],
+    plan: [
+      {
+        week: 'Week 1', title: 'Foundation',
+        items: ['Lock positioning, voice, and visual direction.','Set up brand home (site + IG + email).','Publish founder manifesto post.'],
+      },
+      {
+        week: 'Week 2', title: 'Storytelling',
+        items: ['Shoot hero campaign assets.','Publish 3 brand world posts.','Open waitlist / pre-launch list.'],
+      },
+      {
+        week: 'Week 3', title: 'Launch',
+        items: ['Drop the hero campaign.','Send launch email sequence.','Activate 5 founder-aligned voices.'],
+      },
+      {
+        week: 'Week 4', title: 'Momentum',
+        items: ['Publish first ritual / editorial piece.','Collect 10 customer stories.','Plan month 2 content engine.'],
+      },
+    ],
+  };
+}
+
+// ─── Utils ───────────────────────────────────────────────────────────────────
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
+}
+</script>
+
+</body>
+</html>
