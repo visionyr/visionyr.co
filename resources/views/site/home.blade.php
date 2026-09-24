@@ -1,0 +1,13 @@
+<x-site.layout>
+    @include('site.home.hero')
+    @include('site.home.how-it-works')
+    @include('site.home.create')
+    @include('site.home.accelerate')
+    @include('site.home.showcase')
+    @include('site.home.who-its-for')
+    @include('site.home.why')
+    @include('site.home.pricing')
+    @include('site.home.faq')
+    @include('site.home.contact')
+    @include('site.home.final-cta')
+</x-site.layout>
