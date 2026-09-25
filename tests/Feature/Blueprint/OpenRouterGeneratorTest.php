@@ -6,6 +6,7 @@ use App\Services\Blueprint\BlueprintPrompt;
 use App\Services\Blueprint\BlueprintSchema;
 use App\Services\Blueprint\OpenRouterBlueprintGenerator;
 use App\Services\BrandBlueprintGenerator;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
@@ -173,6 +174,60 @@ class OpenRouterGeneratorTest extends TestCase
         $this->assertSame('template', $result->generator);
         $this->assertStringContainsString('402', $result->failureReason);
         $this->assertStringContainsString('Insufficient credits', $result->failureReason);
+    }
+
+    public function test_it_falls_back_when_the_request_times_out(): void
+    {
+        // What a slow model looks like to the HTTP client once
+        // services.openrouter.timeout is exceeded.
+        Http::fake(fn () => throw new ConnectionException(
+            'cURL error 28: Operation timed out after 180000 milliseconds',
+        ));
+
+        $result = $this->generator()->generate($this->answers());
+
+        $this->assertSame('template', $result->generator);
+        $this->assertStringContainsString('timed out', $result->failureReason);
+
+        // The founder still gets a usable blueprint rather than an error page.
+        $this->assertNull(BlueprintSchema::validate($result->payload));
+        $this->assertSame('Scentrism', $result->payload['brand_name']);
+    }
+
+    public function test_a_timeout_is_not_retried_so_the_request_stays_within_one_timeout(): void
+    {
+        // Retrying a timeout would double the worst-case wall time, which is what
+        // has to stay under PHP's max_execution_time on shared hosting.
+        Http::fake(fn () => throw new ConnectionException('cURL error 28: Operation timed out'));
+
+        $attempts = 0;
+        Http::globalRequestMiddleware(function ($request) use (&$attempts) {
+            $attempts++;
+
+            return $request;
+        });
+
+        $this->generator()->generate($this->answers());
+
+        $this->assertSame(1, $attempts, 'A timeout must not be retried.');
+    }
+
+    public function test_a_transient_http_error_is_still_retried(): void
+    {
+        // These fail fast, so retrying them costs almost nothing and often works.
+        Http::fake(['openrouter.ai/*' => Http::response(['error' => ['message' => 'upstream error']], 500)]);
+
+        $attempts = 0;
+        Http::globalRequestMiddleware(function ($request) use (&$attempts) {
+            $attempts++;
+
+            return $request;
+        });
+
+        $result = $this->generator()->generate($this->answers());
+
+        $this->assertSame(2, $attempts, 'A transient HTTP error should be retried once.');
+        $this->assertSame('template', $result->generator);
     }
 
     public function test_it_falls_back_when_the_response_is_not_json(): void

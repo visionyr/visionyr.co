@@ -76,7 +76,10 @@ class OpenRouterBlueprintGenerator implements BlueprintGenerator
                 'X-Title' => (string) config('services.openrouter.site_name'),
             ])
             ->timeout((int) config('services.openrouter.timeout'))
-            ->retry(2, 1000, throw: false)
+            // Retry transient failures, but never a timeout: a second attempt would
+            // double the worst-case wall time, which has to stay under PHP's
+            // max_execution_time on shared hosting.
+            ->retry(2, 1000, when: fn (Throwable $e) => ! $e instanceof ConnectionException, throw: false)
             ->post(rtrim((string) config('services.openrouter.base_url'), '/').'/chat/completions', [
                 'model' => config('services.openrouter.model'),
                 'messages' => [

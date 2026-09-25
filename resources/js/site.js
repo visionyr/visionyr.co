@@ -132,10 +132,30 @@ if (form) {
         });
     };
 
-    const showError = (message) => {
+    const dashboardUrl = form.dataset.dashboardUrl;
+
+    /**
+     * @param {string} message
+     * @param {boolean} maybeGenerated  The server may have finished anyway — the
+     *   connection dropped, it did not report a failure. Sending someone back to
+     *   "try again" here would spend a second blueprint from their allowance.
+     */
+    const showError = (message, maybeGenerated = false) => {
         loadingStage.style.display = 'none';
         formStage.style.display = 'block';
-        errorBox.textContent = message;
+
+        errorBox.replaceChildren(document.createTextNode(message));
+
+        if (maybeGenerated && dashboardUrl) {
+            errorBox.append(' ');
+
+            const link = document.createElement('a');
+            link.href = dashboardUrl;
+            link.textContent = 'Check your dashboard';
+            link.className = 'font-medium underline underline-offset-2';
+            errorBox.append(link, ' before trying again.');
+        }
+
         errorBox.classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -168,22 +188,31 @@ if (form) {
                 const data = await response.json().catch(() => ({}));
 
                 if (! response.ok) {
-                    throw new Error(
-                        data.message || 'We could not generate your blueprint. Please try again.',
+                    // A message means the app rejected it on purpose — out of
+                    // allowance, invalid answers — and retrying is the right advice.
+                    // No message means a gateway or proxy gave up while the server
+                    // was very likely still working.
+                    throw Object.assign(
+                        new Error(data.message || 'The connection dropped while your blueprint was being generated.'),
+                        { maybeGenerated: ! data.message },
                     );
                 }
 
                 resultUrl = data.url;
             })
             .catch((error) => {
-                failure = error.message || 'Something went wrong. Please try again.';
+                failure = {
+                    message: error.message || 'The connection dropped while your blueprint was being generated.',
+                    // A rejected fetch means the browser never heard back at all.
+                    maybeGenerated: error.maybeGenerated ?? true,
+                };
             });
 
         const start = performance.now();
 
         const tick = () => {
             if (failure) {
-                showError(failure);
+                showError(failure.message, failure.maybeGenerated);
 
                 return;
             }

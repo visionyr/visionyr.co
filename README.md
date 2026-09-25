@@ -150,7 +150,8 @@ Set `DB_CONNECTION=mysql` and the rest of the database block.
 no credits, or a model that does not support structured outputs.
 
 **Generation times out in production** — a blueprint can take 30-90 seconds. Raise PHP's
-`max_execution_time` above the default 30s, and keep `OPENROUTER_TIMEOUT` above it.
+`max_execution_time` well above that, and keep `OPENROUTER_TIMEOUT` **below** it. That ordering
+matters: whichever limit fires first decides whether the visitor gets a template or a 504.
 
 **Styles look unstyled** — `npm run build` has not been run, or `public/build` is missing.
 
@@ -269,6 +270,12 @@ Three files do the work:
 `BlueprintSchema` is the contract the result page renders. It is sent as a strict
 `response_format` json_schema **and** re-validated on the response, because a provider that
 ignores the schema must never reach a view.
+
+**Keep `OPENROUTER_TIMEOUT` below the host's `max_execution_time`.** If PHP is killed first the
+fallback never runs and the visitor gets a 504; if the HTTP client gives up first, the template
+fills in and they still get a blueprint. Leave headroom for the rest of the request — on a host
+allowing 300s, 180 is comfortable. A timeout is deliberately **not** retried, since a second
+attempt would double the worst-case wall time; transient HTTP errors still are.
 
 **Nothing hard-fails.** No API key, a provider outage, a timeout, malformed JSON, or a payload
 that misses the schema all fall back to `BrandBlueprintGenerator` (the deterministic template)

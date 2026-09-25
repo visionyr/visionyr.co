@@ -64,6 +64,7 @@
                     action="{{ route('blueprint.store') }}"
                     data-blueprint-form
                     data-minimum-ms="{{ config('blueprint.minimum_ms') }}"
+                    data-dashboard-url="{{ route('dashboard') }}"
                     class="mx-auto mt-10 max-w-2xl"
                 >
                     @csrf
@@ -192,6 +193,11 @@
                 <p class="mx-auto mt-4 max-w-md text-pretty text-base text-ink/70">
                     Visionyr is crafting a complete brand system for
                     <span data-loading-brand-name class="font-medium text-navy">your brand</span>.
+                </p>
+
+                <p class="mx-auto mt-3 flex max-w-md items-center justify-center gap-2 text-sm text-ink/50">
+                    <i data-lucide="circle-check" class="h-3.5 w-3.5 shrink-0"></i>
+                    You can leave this page — it will finish either way and appear in your dashboard.
                 </p>
 
                 <div class="mt-10 rounded-3xl border border-navy/10 bg-white p-8 text-left shadow-card">

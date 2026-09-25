@@ -40,6 +40,11 @@ class BrandBlueprintController extends Controller
 
         $answers = $request->validated();
 
+        // Generation runs for up to a minute or two. If the visitor closes the tab,
+        // or something in front of PHP gives up waiting, finish anyway and save the
+        // result — they will find it on their dashboard rather than losing the slot.
+        ignore_user_abort(true);
+
         $blueprint = BrandBlueprint::create([
             ...$answers,
             'member_id' => $member->id,
