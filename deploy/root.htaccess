@@ -1,0 +1,42 @@
+# ---------------------------------------------------------------------------
+# Fallback layout: whole project inside the document root
+# ---------------------------------------------------------------------------
+#
+# Use this ONLY when the host cannot keep the application outside public_html.
+# Upload it as public_html/.htaccess, alongside the project's own folders.
+#
+# It does two jobs:
+#   1. sends every request into public/, so Laravel's front controller runs
+#   2. refuses application files outright, so a missing or ignored rewrite in
+#      step 1 cannot expose .env, vendor/, or the source
+#
+# Note this is defence in depth, not a substitute for the preferred layout: if
+# .htaccess stops being applied at all, these rules stop applying with it.
+# ---------------------------------------------------------------------------
+
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Application files are never served, whatever the rules below do.
+    RewriteRule ^\.env - [F,L]
+    RewriteRule ^\.git - [F,L]
+    RewriteRule ^(composer\.(json|lock)|package(-lock)?\.json|artisan|phpunit\.xml|vite\.config\.js|README\.md)$ - [F,L]
+    RewriteRule ^(app|bootstrap|config|database|deploy|node_modules|resources|routes|storage|tests|vendor)(/|$) - [F,L]
+
+    # Everything else is handled by Laravel's front controller.
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Belt and braces for the dotfiles that matter most.
+<FilesMatch "^\.(env|env\..*|git.*)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

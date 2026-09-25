@@ -138,6 +138,54 @@ Members need an account to reach `/create`.
 
 Check it worked: `/` is the marketing site, `/webcms/login` is the CMS.
 
+## Deploying to shared hosting
+
+Laravel expects the document root to be `public/`. Where a host cannot point it there — Hostinger
+serves `public_html` and will not change it — use one of the two layouts below. Both use the same
+front controller, `deploy/public_html/index.php`, which finds the application either way.
+
+### Preferred: application outside the web root
+
+```
+domains/visionyr.co/
+├── laravel/            app/ bootstrap/ config/ database/ resources/ routes/
+│                       storage/ vendor/ artisan  .env
+└── public_html/        ← document root
+    ├── index.php       from deploy/public_html/
+    ├── .htaccess       from public/
+    ├── build/  favicon.ico  robots.txt
+```
+
+Nothing but the public assets is reachable over HTTP, even if `.htaccess` stops being applied.
+Upload everything except `public/` into `laravel/`, then the contents of `public/` into
+`public_html/`, replacing `index.php` with the one from `deploy/public_html/`.
+
+### Fallback: everything in the web root
+
+Only when the host will not allow a folder beside `public_html`. Upload the whole project into
+`public_html/`, then add `deploy/root.htaccess` as `public_html/.htaccess`. It rewrites requests
+into `public/` and refuses `.env`, `vendor/`, and the source outright.
+
+This is defence in depth, not equivalent: if `.htaccess` is ever ignored, the protection goes
+with it. Prefer the split layout where it is possible at all.
+
+### What not to upload
+
+`node_modules/`, `tests/`, `.git/`, and `.env` — set the environment on the server instead.
+`vendor/` and `public/build/` must be uploaded, since shared hosting rarely runs `composer` or
+`npm`; build them locally first with `composer install --no-dev --optimize-autoloader` and
+`npm run build`.
+
+### On the server
+
+- `storage/` and `bootstrap/cache/` must be writable (755 is usually enough).
+- Create `.env` from `.env.example`, set `APP_ENV=production`, `APP_DEBUG=false`, a fresh
+  `APP_KEY`, the database credentials, and the OpenRouter key.
+- **Without SSH** you cannot run `php artisan migrate`. Export the schema locally
+  (`mysqldump --no-data visionyr`) plus the seeded admin row, and import through phpMyAdmin.
+- Set `max_execution_time` comfortably above `OPENROUTER_TIMEOUT` — see the note under
+  Generation below.
+
 ## Common setup problems
 
 **`could not find driver (Connection: sqlite)`** — `.env` is still on the Laravel default.
